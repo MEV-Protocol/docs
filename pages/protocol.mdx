@@ -1,92 +1,95 @@
 # Protocol Overview
 
-<div align="center">
-![Velocimeter Problem Statement](/dome.jpg)
-</div>
 
-## Liquidity Providing and Liquidity Incentivization
+## What is mevETH
 
-Almost every protocol in DeFi needs to have a certain amount of liquidity for one reason or another. This has two major benefits; it provides value to tokens, and usually makes them obtainable.
 
-| Liquidity                                   | Example                | Benefit                                        |
-| ------------------------------------------- | ---------------------- | ---------------------------------------------- |
-| Native token                                | WETH-USDC, NOTE-wCANTO | Treasury access to capital markets             |
-| [Stablecoins](https://youtu.be/XfU9oTCAbF0) | NOTE-USDC              | Ensure stability by minimizing depeg risk      |
-| Pegged asset                                | ETH-stETH              | Minimize opportunity cost of converting assets |
+mevETH is the token of MEV Optimized Liquid Staking Protocol. An Ethereum next-generation seamless liquid staking protocol. Built from the ground up for MEV capture and Validator rewards.
 
-Here is a simple [DeFI 101 Youtube Playlist](https://youtu.be/C-yfWPvdxt8) if this is something you would like.
+The main goal is to optimize the validator technology used to maximize a return to mevETH holder through various means:
 
-Common solutions of liquidity provision can be with the following:
+- OpenMEV Architecture - Maximizes the yield validators get by capturing multiple winning block proposals. The goal is to surpass mev-boost.
+- DeFi Integrations - The team has a long and deep understanding of DeFi and is able to call upon their network of DeFi partners for integrations.
+- A ERC-4626 non-rebasing Vault Token - This make integrations with most smart contracts more frictionless
 
-- Pool 2 emissions (i.e. attaching a reward to staked LPs) AKA. Yield Farms, allow projects to distribute tokens to providers of liquidity.
 
-- Protocol owned liquidity allows token holders a level of security and stability in price, as well as at certain times give projects the ability to accumulate tokens of another project.
 
-- Tokens with voting powers have been know to get alternative token bribes to sway their votes.
+## Staking Ethereum
 
-Here is a simple [Dex Youtube Video](https://youtu.be/xvwcaQmJPxg).
+Since the move from Proof of Work (POW) to Proof of Stake (POS) validation requires upfront Ether (ETH) to be staked in order for validators to run nodes on the network. Currently there is a requirement of 32 ETH, regardless of USD value. This can sometimes be prohibitive for investors and even validators to take part.  Therefore Liquid Staking Tokens(LST) were created to socialize this requirement to many.
 
-## Introducing Velocimeter 🌊
+### Validator rewards
 
-Velocimeter presents an attractive platform to over liquidity needs to projects.
+As long as a validator is running actively on the network, it is granted a bit of ETH from inflation. These rewards generally come from:
 
-Velocimeter was based on Velodrome which had made improvements to the Solidly codebase/logic to carry out the original intended mechanism of allowing voters to _fairly compensate_ LPs for impermanent loss.
+Attesting blocks
+Proposing blocks
+Participating in synchronization committees
+Execution Layer
 
-Solidly had several key issues that prevented its success in the Fantom ecosystem
+Execution Layer Rewards (ELRs) were added with [The Merge](https://ethereum.org/en/roadmap/merge). This upgrade allows users to set a priority fee when sending a transaction. The extra gas fee encourages builders to add their transaction to a block, and this fee increases the amount a validator can earn. This number is not predictable as it depends on both network traffic and user choice.
 
-Here is a simply, early, video explainer of the [Solidly system](https://youtu.be/x3vhNw2g-CU) - It's highly recommended that you watch this video. Both Velocimeter and Velodrome are similar enough to warrant a watch.
+Additionally, with some setups the use of a custom relayer such as MEV-Boost can select higher paying blocks. More on MEV-Boost below.
 
-## Changes to the Logic of Velodrome
+### Slashing 
 
-The most significant change is how fees are handled. In Velocimeter, the fees are sent direct to External Bribes, bypassing the Internal Bribes system. This creates the benefit of having a more predictable voting experience for voters where voters can see the entire some of tokens that their votes will currently get a pro-rata share of.
+Slashing can occur when a validator is offline for a period of time, or they attempt to propose a malicious block. A validator must withdraw their stake, minus the penalties, as soon as possible to avoid further penalties. This loss comes out of the ETH staked.
 
-## Velodromes Changes: Tying Rewards with Emissions
+### Liquid Staking Tokens
 
-- Voters to make only one "active" voting decision (i.e. `Voter.vote()`, `Voter.reset()`) every epoch.
-- Additionally, bribes from fees (_internal_) and external sources (_external_) are treated slightly different.
-  Internal bribes are extracted from each swap and are converted to external bribes for that specific pool.
-  External bribes are rewarded _per epoch_ and are claimable only after the next epoch starts, when all votes are tallied.
-  This means that a bribe sent at the last minute of an epoch will accrue to all voters of that epoch, and be claimable once the epoch flips. _(This is no longer valid on Velocimeter.)_
+LSTs give users an easy way to participate in making the Ethereum network more robust and they earn rewards for doing so. Currently there are 2 major designs for LSTs: rebasing and value accruing. Both types gain their rewards by “lending” their ETH to others that wish to run a validator, but don't have the required 32 ETH to stake. In return for “borrowing” this ETH, validators share their rewards with holders of LSTs. 
 
-## Improvement: Ensuring Productive Gauges
 
-**In Solidly, exploitive voters were able to direct emissions towards unproductive gauges, including those for pools 100% owned by those voters.** Velodrome and thus Velocimeter addresses this in three ways:
+In rebasing models, LST token holders have their balance changed periodically as their rewards accrue. Most of these models require wrapping to be useful in DeFi.
 
-- First, the team only has the ability to whitelist tokens for gauges.
+In value accruing models, LST token holders also retrain the same quantity of tokens, but the underlying value of these tokens increased in reference to the ETH they can be redeemed for. 
 
-The basic guidelines for whitelisting a token is a commitment to supply, or have, a TVL in the pool of at least $10,000 USD. This ensures trading in that pool at least a small measure of stability before a gauge is granted. There could be individual cases where this requirement might be modified.
+mevETH has chosen the second, value accruing tokens (VAT), for its compatibility with DeFi protocols.
 
-If your team wants a gauge, we suggest you first ask for token whitelisting prior to making the gauge. This is because you will be able to complete the entire process. However, if you have already created a liquidity pool, we can still help you to get a gauge.
+## mevETH’s Difference
 
-- Second, we've also added an Emergency ["Council"](), which has the ability to perform the following functions
-  | Function | Purpose |
-  | killGauge | This kills a certain gauge and stops it from receiving FLOW |
-  | reviveGauge | This resets a killed gauge and allow to to start receiving FLOW |
-  | setEmergencyCouncil| This changes the MSIG address |
+The first difference to some LSTs is the choice to use VATs, but there are a significant number of LSTs already using this model. To set mevETH aside from the pack, a focus on MEV (Miner Extractable Value) is employed. It is the hope of mevETH to attract the best validators by offering them a better deal than they can get from other options. 
 
-Any gauge that is deemed unproductive to the broader ecosystem or violates the agreement with the partners. ie, isn't using a valid rightside token, may be killed. This Council will start off containing only the Velocimeter core team but individuals from the community will be added later, and the broader DeFi ecosystems. The Council of Velocimetry multisig is available here, and signers include:
 
-| Signer      | Affiliation | Address                                    |
-| ----------- | ----------- | ------------------------------------------ |
-| Ceazor      | Velocimeter | 0x3c5Aac016EF2F178e8699D6208796A2D67557fe2 |
-| Dunks       | Velocimeter | 0x53f3B51FD7F327E1Ec4E6eAa3A049149cB2acaD2 |
-| Torbik      | Velocimeter | 0x0b776552c1Aef1Dc33005DD25AcDA22493b6615d |
-| Motto       | Velocimeter | 0x78e801136F77805239A7F533521A7a5570F572C8 |
-| Coolie      | Velocimeter | 0x03B88DacB7c21B54cEfEcC297D981E5b721A9dF1 |
-| Coming Soon | Degen       | 0xSuperDegenThatWantsToGoWithTheFlowWithUs |
+This is achieved by the use of a custom made relayer that is built on top of MEV-Boost.
 
-In Velcimeter, Liquidity Pool that DO NOT have a gauge forfeit their trading fees to the tank. You can read more on this [here.](/guages)
+## What is MEV-Boost?
 
-## Further Velodrome adopted features
+MEV-Boost is an implementation of proposer-builder separation built by Flashbots. But what does this mean? In simple words, it's a marketplace for blockspace. Validators using MEV-Boost, sell their blocks to the highest bidder, via the tips mentioned above. This allows Validators to get a higher ROI when compared to the basic validation inflation rewards. 
 
-**In Solidly, protocol emissions decayed too quickly, leading to minimal incentives for late entrants.** Obviously early adopters should be rewarded for the risks they're taking, but we observed that the emissions decayed too quickly in the Solidly model. As a result, we made a few small tweaks to ensure that while early adopters would still be rewarded, the protocol would still be an attractive opportunity for future protocols.
+As a user of Ethereum, you don't see this much, except when your are trying to speed up your transactions. 
 
-- First, we modified the emissions growth function to
+As an LST holder, you might want to consider if your provider is using MEV-Boost or something similar to earn these extra rewards.  
 
-  > (veFLOW.totalSupply ÷ FLOW.totalsupply)³ × 0.5 × Emissions
+## What does mevETH do?
 
-- Second, there is no negative voting.
-- Third, there is no emissions "boost" for voters.
-- Fourth, the initial distribution has been carefully selected to include partner protocols that were felt would bring their own types of unique value to the ecosystem.
+mevETH has built a custom relayer whereby validators only need to point at the mevRelayer to gain the benefits of MEV-Boost auctions.  This is a simplification for those actually wishing to run a validator, but it serves as a primer for users wishing to understand mevETH.
+mevETH’s custom relayer searches the auctioning of blocks for the best paying blocks. It is hyper focused on sourcing and selecting blocks that will translate to higher rewards to validators, which will be shared with all mevETH holders. 
+Redeeming and Minting
 
-Here is a link to [Velodrome Finance 🚴‍♀️💨🌈](https://app.velodrome.finance/)
+Minting and redeeming are the ways to enter and exit a position in mevETH. A user might decide to do this for a variety of reasons, all their own. We encourage you to research all the risks with LSTs and Staking in general before you decide to take part in any LST.
+
+
+## Minting mevETH
+Due to the value accruing design, minting and redeeming was only 1 to 1 with ETH at genesis. As time progresses, the mint and redeeming rate will change in the following manner. 
+
+Minting - Using 1 ETH to mint mevETH will result in some number less than 1. 
+Redeeming - Using 1 mevETH to redeem will result in some number of ETH greater than 1. 
+
+Minting mevETH is an instant transaction for any user and only requires the time it takes for their transaction to confirm on the Ethereum blockchain. Usually about 15 seconds
+
+
+## Redeeming mevETH
+
+Redeeming takes significantly longer. This is because in order to redeem larger amounts, validators that have used the ETH, may need to be closed down, and ETH withdrawn from the staking contract to return to users. That being said, for smaller amounts it is possible to exit the position by swapping out of it. 
+
+On the website, you will see an Instant Withdraw button. This button will search the liquidity pool for you for the best rate and swap your mevETH for ETH. This can have both price impact and slippage as the size of the request increases. 
+
+If a user is not in a significant hurry, they may elect to use the “Use mevETH” feature on the website. This will burn the mevETH from their wallet and give them any ETH currently in the contracts waiting for “borrowing by validator setups.” If this amount is not enough, the contracts will queue up a withdrawal from a validator. This may take up to 15 days to complete, and a user will receive the remaining owed ETH as WETH (wrapped ETH).
+
+## Fees
+
+There are no fees on mint or redeeming. For “Use mevETH” there is only the gas required to send transactions. There are fees for swapping mevETH to ETH via the “Instant Withdraw” method and are subject to the Decentralized Exchanges (DEx) that the swap goes through. Generally, it will be about 0.3 - 0.4%
+
+The MEV protocol applies a 10% fee on staking rewards. The fee goes to the protocol for system upkeep. 
+

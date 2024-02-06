@@ -1,31 +1,35 @@
-# Velocimeter 🌊📃
+# The MEV Protocol
 
-Velocimeter product documentation.
-
-This is where we work on product documentation which is built and deployed
-into the main app.
+The MEV Protocol (Maximum Extractable Value Technologies Ltd.) is a liquid staking protocol with the goal of ensuring our validator sets are rewarded fairly for their contributions
 
 To run the [Nextra](https://nextra.vercel.app) server, use:
 ```
 docker run --rm -v $(pwd):/app -p 3000:3000 -w /app -it node:lts-alpine sh -c 'yarn && yarn next'
 ```
-# Canto Deployments
-[FLOW](https://evm.explorer.canto.io/token/0x2Baec546a92cA3469f71b7A091f7dF61e5569889)
+# Contract Deployments
 
-[GaugeFactory](https://evm.explorer.canto.io/address/0xa472b00ddcf03f099db954c70133dd6f0c5fcc26)
+[mevETH - 0x24Ae2dA0f361AA4BE46b48EB19C91e02c5e4f27E](https://etherscan.io/address/0x24ae2da0f361aa4be46b48eb19c91e02c5e4f27e#code)
+[WagyuStaker - 0xca3773d1a1bca3eda4ccc99f3939564a79467da5](https://etherscan.io/address/0xca3773d1a1bca3eda4ccc99f3939564a79467da5#code)
+[AuthManager - 0xe60f7016247218D2d4662f6623722221990993de](https://etherscan.io/address/0xe60f7016247218D2d4662f6623722221990993de#code)
+[MevEthRateProvider - 0xf518f2EbeA5df8Ca2B5E9C7996a2A25e8010014b](https://etherscan.io/address/0xf518f2EbeA5df8Ca2B5E9C7996a2A25e8010014b#code)
+[MevEthRouter - 0xb60598cd27fb881b92a34aFcE93aA1ee647B4A93](https://etherscan.io/address/0xb60598cd27fb881b92a34aFcE93aA1ee647B4A93#code)
+[MevETHShareVault - 0x617c8dE5BdE54ffbb8d92716CC947858cA38f582](https://etherscan.io/address/0x617c8dE5BdE54ffbb8d92716CC947858cA38f582)
 
-[PairFactory](https://evm.explorer.canto.io/address/0xb12aF64E128A1D4489D13314eB4Df81cBCE126aC)
 
-[WrappedExternalBribeFactory](https://evm.explorer.canto.io/address/0x3a9238141a4655d0dC907e18BBf9c21b843F09c7)
+### Contracts
 
-[BribeFactory](https://evm.explorer.canto.io/address/0xa9fa811Cc3BDdF9ba8dAC435f26B77525Eb3B546)
+EIP-1191 Checksum for mevETH
 
-[Minter](https://evm.explorer.canto.io/address/0x0cEd59FF9BDe47b2F5F0EDD2FdFfA6a0116d91Cd)
+```
+0x24aE2dA0F361AA4bE46B48EB19c91e02c5E4F27e
+```
 
-[RewardsDistributor](https://evm.explorer.canto.io/address/0x19E1eef506eE61A58d1AAa11635361bBaE5D0676)
+Normal Checksum
 
-[Router](https://evm.explorer.canto.io/address/0x9B2920e72dF6E1A7053bEa7235c65079F5104398)
+```
+0x24Ae2dA0f361AA4BE46b48EB19C91e02c5e4f27E
+```
 
-[Voter](https://evm.explorer.canto.io/address/0xC5B58aE761a77fF16d548dE9b42933c8FBfe4c33)
+## License
 
-[VotingEscrow](https://evm.explorer.canto.io/address/0x990efF367C6c4aece43c1E98099061c897730F27)
+UPL-1.0
