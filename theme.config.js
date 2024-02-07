@@ -2,9 +2,9 @@
  * @type {import('nextra-theme-docs').DocsThemeConfig}
  */
 export default {
-  docsRepositoryBase: "https://github.com/Velocimeter/docs/blob/main",
+  docsRepositoryBase: "https://github.com/MEV-Protocol/docs/tree/main",
   useNextSeoProps: () => ({
-    titleTemplate: '%s - Velocimeter',
+    titleTemplate: "%s - MEV Protocol",
   }),
   search: {
     placeholder: "Search...",
@@ -12,51 +12,36 @@ export default {
   // primaryHue: '172',
   darkMode: true,
   footer: {
-    text: `MIT ${new Date().getFullYear()} © Velocimeter.`
+    text: `MIT ${new Date().getFullYear()} © MEV Protocol.`,
   },
   logo: (
     <>
-      <img src='/velocimeter.png' alt='Velocimeter' height={240} width={240} />
-      <span className='mr-2 font-extrabold md:inline'></span>
-      <span className='text-gray-600 font-normal hidden md:inline'>
-        Liquidity Labs
-      </span>
+      <span className="mr-2 font-extrabold md:inline"></span>
+      <span className="text-gray-600 font-normal hidden md:inline">MEV Protocol</span>
     </>
   ),
   head: (
     <>
-      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta
-        name='description'
-        content='Velocimeter: The liquidity base-layer aligning incentives between liquidity providers & protocols'
+        name="description"
+        content="MEV Protocol: Ethereum's next-generation seamless liquid staking protocol. Built from the ground up for MEV capture and Validator rewards."
       />
-      <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:site' content='@VelocimeterDEX' />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@mevdotio" />
+      <meta name="twitter:title" content="MEV Protocol" />
       <meta
-        name='twitter:title'
-        content='Velocimeter: The liquidity base-layer'
+        name="twitter:description"
+        content="mevETH is the token of MEV Optimized Liquid Staking Protocol. An Ethereum next-generation seamless liquid staking protocol. Built from the ground up for MEV capture and Validator rewards."
       />
+      <meta name="twitter:image" content="https://docs.mev.io/mevETH.jpg" />
+      <meta property="og:title" content="MEV Protocol: The liquidity base-layer." />
       <meta
-        name='twitter:description'
-        content='Velocimeter is an automated market maker (AMM or simply, decentralized exchange) aligning incentives with liquidity providers & protocols'
+        property="og:description"
+        content="mevETH is the token of MEV Optimized Liquid Staking Protocol. An Ethereum next-generation seamless liquid staking protocol."
       />
-      <meta
-        name='twitter:image'
-        content='https://docs.velocimeter.xyz/dome6.jpg'
-      />
-      <meta
-        property='og:title'
-        content='Velocimeter: The liquidity base-layer.'
-      />
-      <meta
-        property='og:description'
-        content='Velocimeter is an automated market maker (AMM or simply, decentralized exchange) aligning incentives with liquidity providers & protocols'
-      />
-      <meta
-        property='og:image'
-        content='https://Velocimeter-docs.pages.dev/Velocimeter_banner.jpg'
-      />
-      <meta name='apple-mobile-web-app-title' content='Velocimeter' />
+      <meta property="og:image" content="https://docs.mev.io/banner.jpeg" />
+      <meta name="apple-mobile-web-app-title" content="MEV Protocol" />
     </>
   ),
 };
