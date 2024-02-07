@@ -7,9 +7,8 @@
   "contracts": "MEV Contracts",
   "pressKit": "Press Kit",
   "security": "Security",
-  "tokenomics": "Tokenomics",
   "devdocs": {
-    "title": "Developer Docs",    
+    "title": "Developer Docs",
     "mevETHContract": "mevETH Functions",
     "mevETHRateProvider": "mevETH Rate Provider",
     "wayguStaker": "WayguStaker",
