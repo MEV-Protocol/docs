@@ -33,3 +33,12 @@ Normal Checksum
 ## License
 
 UPL-1.0
+
+## To build this docs locally
+
+To run the [Nextra](https://nextra.vercel.app) server, use:
+```
+yarn install (only need once)
+yarn next
+click the url such as http://localhost:3000
+```

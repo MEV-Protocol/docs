@@ -2,33 +2,35 @@
 
 # MEV Protocol Contracts
 
-Here is a list of the contracts that are currently deployed. There is a brief description of each below.
+Here is a list of the contracts that are currently deployed. There is a brief description of each below. The hyperlinks will take you to verified contracts on Etherscan.
 
-[mevETH - 0x24Ae2dA0f361AA4BE46b48EB19C91e02c5e4f27E](https://etherscan.io/address/0x24ae2da0f361aa4be46b48eb19c91e02c5e4f27e#code)
-[MevEthRateProvider - 0xf518f2EbeA5df8Ca2B5E9C7996a2A25e8010014b](https://etherscan.io/address/0xf518f2EbeA5df8Ca2B5E9C7996a2A25e8010014b#code)
-[WagyuStaker - 0xca3773d1a1bca3eda4ccc99f3939564a79467da5](https://etherscan.io/address/0xca3773d1a1bca3eda4ccc99f3939564a79467da5#code)
-[MevETHShareVault - 0x617c8dE5BdE54ffbb8d92716CC947858cA38f582](https://etherscan.io/address/0x617c8dE5BdE54ffbb8d92716CC947858cA38f582)
-[MevETHRouter - 0xb60598cd27fb881b92a34aFcE93aA1ee647B4A93](https://etherscan.io/address/0xb60598cd27fb881b92a34aFcE93aA1ee647B4A93#code)
+| Contract | Address |
+|----------|---------|
+| [mevETH](https://etherscan.io/address/0x24ae2da0f361aa4be46b48eb19c91e02c5e4f27e#code) | 0x24Ae2dA0f361AA4BE46b48EB19C91e02c5e4f27E |
+| [MevEthRateProvider](https://etherscan.io/address/0xf518f2EbeA5df8Ca2B5E9C7996a2A25e8010014b#code) | 0xf518f2EbeA5df8Ca2B5E9C7996a2A25e8010014b |
+| [WagyuStaker](https://etherscan.io/address/0xca3773d1a1bca3eda4ccc99f3939564a79467da5#code) | 0xca3773d1a1bca3eda4ccc99f3939564a79467da5 |
+| [MevETHShareVault](https://etherscan.io/address/0x617c8dE5BdE54ffbb8d92716CC947858cA38f582) | 0x617c8dE5BdE54ffbb8d92716CC947858cA38f582 |
+| [MevETHRouter](https://etherscan.io/address/0xb60598cd27fb881b92a34aFcE93aA1ee647B4A93#code) | 0xb60598cd27fb881b92a34aFcE93aA1ee647B4A93 |
 
 ## mevETH
 This is the actual liquid staking token (LST) that users can mint, redeem, or swap for via 3rd party liquidity Decentralized Exchanges.
-To see a deeper explanation of the functions click [here](/mevETH.mdx).
+To see a deeper explanation of the functions click [here](../devdocs/mevETHContract.mdx).
 
 ## mevETH Rate provider
 This contract keeps track of the value of mevETH in terms of ETH and can be used to query it for this value.
-To see a deeper explanation of the functions click [here](/mevETHRateProvider.mdx).
+To see a deeper explanation of the functions click [here](/devdocs/mevETHRateProvider.mdx).
 
 ## WagyuStaker
 This contract will stake ETH directly into the BeaconChainDepositContract.
-To see a deeper explanation of the functions click [here](/wagyuStaker.mdx).
+To see a deeper explanation of the functions click [here](/devdocs/wagyuStaker.mdx).
 
 
 ## AuthManager
 This periphery contract connects the other contracts together ans allows for some simple admin adjustments
-To see a deeper explanation of the functions click [here](/auth.mdx).
+To see a deeper explanation of the functions click [here](/devdocs/auth.mdx).
 
 ## MevETH Router
 This contract looks for alternative routes when redeeming to see if 3rd party liquidity is enough to sustain a redemption. This is to avoid unneeded closing of validators for smaller redemptions 
-To see a deeper explanation of the functions click [here](/MevETHRateProvider.mdx).
+To see a deeper explanation of the functions click [here](/devdocs/MevETHRateProvider.mdx).
 
 

@@ -1,0 +1,16 @@
+# What is MEV Auction
+
+MEV Auction is an alternative market for validators to auction off their blockspaces to the highest bidder. Bidders are usually blockbuilders or searchers.
+
+Live on Holesky test network, this offers an alternative to the existing PBS paradigm while being backwards compatible with Flashbot's MEV Boost.
+
+Jump to [test network](https://www.mevauction.com/developers/testnet.md) details and connection information
+
+Features
+- **Forward Embedded Volumetric Market for Partial Blockspace:** We provide a forward contract market for the beta portion of a block: enabling users to buy blockspace in advance.
+- **Reverting Transactions guaranteed exclusion:** We guarantee that transactions that are reverted will not be included in the block.
+- **No Latency Races:** Encode your bidding strategy through a smart contract, no need for managing an active RPC connection.
+- **Guaranteed Transaction Inclusion:** Transactions can be hedged in both gas cost and settlement risk.
+- **Searchers decoupled from Builders:** Bid for direct transaction inclusion, this lets you bypass builders.
+- **Consecutive Blocks Support:** This behaviour is enabled by pre-rewarding builders by operating a separate auction to the rights of these consecutive blocks.
+

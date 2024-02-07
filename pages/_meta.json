@@ -1,12 +1,18 @@
 {
-  "index": "MEV Protocol",
-  "protocol": "What is mevETH",
-  "3rd": "Third Party additional yield sources",
+  "index": "Introduction",
+  "disclaimer": "Legal Disclaimer",
+  "mevETH": "What is mevETH",
+  "mevAuction": "What is MEV Auction",
+  "3rd": "Third Party Additional Yield",
   "contracts": "MEV Contracts",
-  "mevETH": "mevETH Functions",
-  "mevETHRateProvider": "mevETH Rate Provider",
-  "wayguStaker": "WayguStaker",
-  "authManager": "authManager.sol",
+  "pressKit": "Press Kit",
   "security": "Security",
-  "pressKit": "Press Kit"
+  "tokenomics": "Tokenomics",
+  "devdocs": {
+    "title": "Developer Docs",    
+    "mevETHContract": "mevETH Functions",
+    "mevETHRateProvider": "mevETH Rate Provider",
+    "wayguStaker": "WayguStaker",
+    "authManager": "authManager.sol"
+    }
 }
