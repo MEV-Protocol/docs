@@ -1,16 +1,63 @@
 # What is MEV Auction
 
-MEV Auction is an alternative market for validators to auction off their blockspaces to the highest bidder. Bidders are usually blockbuilders or searchers.
+MEV Auction is an alternative market for validators to auction off their blockspace to the highest bidders. Bidders are usually blockbuilders or searchers. With this new system, multiple blockbuilders can win space on the same block and contribute pieces of that block. 
 
-Live on Holesky test network, this offers an alternative to the existing PBS paradigm while being backwards compatible with Flashbot's MEV Boost.
+This means proposers can continue to enjoy benefits of mev-boost while earning additional rewards with mevAuction. 
+
+## How does it work - ELI5
+
+- The MEV Protocol runs a number of protocol owned validators.
+- The MEV Protocol validators use an exclusive relayer and knows two epochs in advance that they will be proposing a block.
+- The validators still use standard MEV-Boost, but have use of the fixed relay endpoint.
+- A specialized L2 blockchain is used to auction future blocks bundles.
+- Builders burn their L2 tokens to submit their block bundles.
+- The MEV Relayer selects the winning Top bundle, and merges it with the Bottom bundles and builds the block
+- The final block is shipped to MEV-Boost as usual.
+
+## Working with 20 [ ]s
+
+This article, [Splitting the Block](https://blog.20squares.xyz/mev-io-initial-announcement/), offers a much deeper understanding for people that wish to dig deeper. But in essence, this new block auction provides two benefits:
+
+- Blocks are split up and this allows validators to gain the benefits of multiple builders in a single block.
+- Blockspace can be purchased in advance.
+
+### What is PBS?
+
+A basic understanding of the Proposer-Builder-Separation (PBS) is required to put this feature into simple terms. PBS is the design in Ethereum that created 2 roles where 1 used to be. The justification for this is to allow more actors to spin up validators, AKA proposers, and to help further decentralize the chain. 
+
+All the difficult tasks are now allocated to the builders. In essence, the builders search all the transactions in the memPool (public queue of pending transactions) and select which ones they want to add to a block. The block is passed to the proposers, via the relayer, who "propose" this block should be added to the current blockchain.
+
+This is a simplification, and a deeper understanding of PBS can be found on [ethereum.org](https://ethereum.org/nl/roadmap/pbs) 
+
+You can think of it like this:
+
+| User | memPool | Blockbuilders | Built Block | Relayer | validators | Blockchain |
+|------|---------|---------------|-------------|---------|------------|------------|
+| User1 ->| txn1 |               |             |            |            |         |
+| User2 ->| txn2 ->|             |             |            |            |         |  
+| User3 ->| txn3 ->|Blockbuilder1| block [txn2, txn3, txn4] | MEV-BOOST |proposer | Ethereum|
+| User4 ->| txn4 ->|             |             |            |            |         |
+
+The proposer can NOT see the contents of the block, and simply chooses the one that pays them most. The proposer also pays the blockbuilder their fee.
+
+## Back to the Splitting The Block
+
+On the MEV Protocol the blockspace is spilt into 2 parts, Top of the Block and Bottom of the Block.
+
+Here is a [post by Vitalik Buterin](https://ethresear.ch/t/how-much-can-we-constrain-builders-without-bringing-back-heavy-burdens-to-proposers/13808) where his suggests splitting the block.
+
+## The Block Parts
+
+Simply said, the blocks are divided into 2 parts; the Top, and the Bottom
+
+In the Top part of the block, transactions like CEX-DEX arbitrage will reside. This space is considered quite valuable for this reason. 
+
+In the Bottom, transactions that do not rely so much on changes to the ecosystem in whole, like sending and ERC20 from one wallet to another, will find space in the bottom of the block.
+ 
+## Testnet
 
 Jump to [test network](https://www.mevauction.com/developers/testnet.md) details and connection information
 
-Features
-- **Forward Embedded Volumetric Market for Partial Blockspace:** We provide a forward contract market for the beta portion of a block: enabling users to buy blockspace in advance.
-- **Reverting Transactions guaranteed exclusion:** We guarantee that transactions that are reverted will not be included in the block.
-- **No Latency Races:** Encode your bidding strategy through a smart contract, no need for managing an active RPC connection.
-- **Guaranteed Transaction Inclusion:** Transactions can be hedged in both gas cost and settlement risk.
-- **Searchers decoupled from Builders:** Bid for direct transaction inclusion, this lets you bypass builders.
-- **Consecutive Blocks Support:** This behaviour is enabled by pre-rewarding builders by operating a separate auction to the rights of these consecutive blocks.
+
+
 
